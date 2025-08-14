@@ -1,109 +1,109 @@
-[
-  {
-    "type": "separator",
-    "name": "sep0",
-    "label": "General"
-  },
-  {
-    "type": "text",
-    "name": "startTime",
-    "label": "Starting Time (HH:MM:SS)",
-    "value": "01:00:00"
-  },
-  {
-    "type": "number",
-    "name": "capHours",
-    "label": "Cap (hours, 0 = no cap)",
-    "value": 0,
-    "min": 0,
-    "max": 999
-  },
-  {
-    "type": "checkbox",
-    "name": "persist",
-    "label": "Persist across reloads",
-    "value": true
-  },
-  {
-    "type": "number",
-    "name": "tickMs",
-    "label": "Tick refresh (ms)",
-    "value": 250,
-    "min": 50,
-    "max": 1000
-  },
-  {
-    "type": "separator",
-    "name": "sep1",
-    "label": "Time Added"
-  },
-  {
-    "type": "number",
-    "name": "t1Seconds",
-    "label": "Seconds per T1 Sub",
-    "value": 60,
-    "min": 0,
-    "max": 86400
-  },
-  {
-    "type": "number",
-    "name": "t2Seconds",
-    "label": "Seconds per T2 Sub",
-    "value": 120,
-    "min": 0,
-    "max": 86400
-  },
-  {
-    "type": "number",
-    "name": "t3Seconds",
-    "label": "Seconds per T3 Sub",
-    "value": 180,
-    "min": 0,
-    "max": 86400
-  },
-  {
-    "type": "number",
-    "name": "giftSeconds",
-    "label": "Seconds per Gift (each)",
-    "value": 60,
-    "min": 0,
-    "max": 86400
-  },
-  {
-    "type": "separator",
-    "name": "sep2",
-    "label": "Style"
-  },
-  {
-    "type": "text",
-    "name": "fontFamily",
-    "label": "Font Family",
-    "value": "'Pirata One', 'Trebuchet MS', sans-serif"
-  },
-  {
-    "type": "number",
-    "name": "fontSize",
-    "label": "Font Size (px)",
-    "value": 96,
-    "min": 16,
-    "max": 400
-  },
-  {
-    "type": "colorpicker",
-    "name": "textColor",
-    "label": "Text Color",
-    "value": "#FFD85E"
-  },
-  {
-    "type": "colorpicker",
-    "name": "shadowColor",
-    "label": "Shadow Color",
-    "value": "#000000"
-  },
-  {
-    "type": "button",
-    "name": "resetBtn",
-    "label": "Reset Countdown Timer",
-    "value": "Reset Now"
-  }
-]
+{
+    "sep0": {
+        "type": "hidden",
+        "name": "sep0",
+        "label": "General:"
+    },
+    "startTime": {
+        "type": "text",
+        "name": "startTime",
+        "label": "Starting Time (HH:MM:SS)",
+        "value": "01:00:00"
+    },
+    "resetBtn": {
+        "type": "button",
+        "name": "resetBtn",
+        "label": "Reset Countdown Timer",
+        "value": "Reset Now"
+    },
+    "capHours": {
+        "type": "number",
+        "name": "capHours",
+        "label": "Cap (hours, 0 = no cap)",
+        "value": 0,
+        "min": 0,
+        "max": 999
+    },
+    "persist": {
+        "type": "checkbox",
+        "name": "persist",
+        "label": "Persist across reloads",
+        "value": true
+    },
+    "tickMs": {
+        "type": "number",
+        "name": "tickMs",
+        "label": "Tick refresh (ms)",
+        "value": 250,
+        "min": 50,
+        "max": 1000
+    },
+    "sep1": {
+        "type": "hidden",
+        "name": "sep1",
+        "label": "Time Added:"
+    },
+    "t1Seconds": {
+        "type": "number",
+        "name": "t1Seconds",
+        "label": "Seconds per T1 Sub",
+        "value": 60,
+        "min": 0,
+        "max": 86400
+    },
+    "t2Seconds": {
+        "type": "number",
+        "name": "t2Seconds",
+        "label": "Seconds per T2 Sub",
+        "value": 120,
+        "min": 0,
+        "max": 86400
+    },
+    "t3Seconds": {
+        "type": "number",
+        "name": "t3Seconds",
+        "label": "Seconds per T3 Sub",
+        "value": 180,
+        "min": 0,
+        "max": 86400
+    },
+    "giftSeconds": {
+        "type": "number",
+        "name": "giftSeconds",
+        "label": "Seconds per Gift (each)",
+        "value": 60,
+        "min": 0,
+        "max": 86400
+    },
+    "sep2": {
+        "type": "hidden",
+        "name": "sep2",
+        "label": "Style:"
+    },
+    "fontFamily": {
+        "type": "text",
+        "name": "fontFamily",
+        "label": "Font Family",
+        "value": "'Pirata One', 'Trebuchet MS', sans-serif"
+    },
+    "fontSize": {
+        "type": "number",
+        "name": "fontSize",
+        "label": "Font Size (px)",
+        "value": 96,
+        "min": 16,
+        "max": 400
+    },
+    "textColor": {
+        "type": "colorpicker",
+        "name": "textColor",
+        "label": "Text Color",
+        "value": "#FFD85E"
+    },
+    "shadowColor": {
+        "type": "colorpicker",
+        "name": "shadowColor",
+        "label": "Shadow Color",
+        "value": "#000000"
+    }
+}
