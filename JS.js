@@ -155,9 +155,17 @@ window.addEventListener('onEventReceived', function (obj) {
     if (!d) return;
 
     const listener = d.listener || '';
+    const ev = d.event || {};
+
+if (ev.listener === 'widget-button') {
+        if (ev.field === 'resetBtn') {
+            resetSabTimer();
+            return;
+        }
+    }
+
     if (!listener.includes('subscriber')) return;
 
-    const ev = d.event || {};
     // ev.tier: '1000' | '2000' | '3000'
     // ev.gifted: boolean
     // ev.amount: number (for bulk gift count)
@@ -185,10 +193,3 @@ window.resetSabTimer = function () {
     setFromStart();
     render();
 };
-
-window.addEventListener('onWidgetSettingsUpdate', function (obj) {
-    const f = obj.detail.fieldData || {};
-    if (f.resetBtn) {
-        resetSabTimer();
-    }
-});
