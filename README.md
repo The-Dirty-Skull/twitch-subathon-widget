@@ -45,8 +45,3 @@ It features:
 - The widget listens for Twitch events through StreamElements in real-time.
 - Special event logic (e.g., large gift detection) can be configured in the JS file.
 - Image uploads for the **special counter image** are done in the widget settings under `image-input`.
-
----
-
-## License
-This project is released under the MIT License. Feel free to modify and use it for your own streams.
