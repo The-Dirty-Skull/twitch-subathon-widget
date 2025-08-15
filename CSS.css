@@ -26,12 +26,20 @@
 }
 
 #hint {
-    font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color: rgba(255, 255, 255, 0.7);
+    font: 24px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: rgb(190, 130, 0);
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
     user-select: none;
 }
 
 body.production #hint {
     display: none;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.fade.show {
+  opacity: 1;
 }

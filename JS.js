@@ -113,6 +113,8 @@ function tryRestore() {
     return false;
 }
 
+let hints = buildHints();
+
 window.addEventListener('onWidgetLoad', function (obj) {
     const d = obj.detail || {};
     const f = d.fieldData || {};
@@ -140,6 +142,10 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
     elTimer = document.getElementById('timer');
 
+    hints = buildHints();
+    showNextHint();
+    setInterval(showNextHint, 5000);
+
     if (!tryRestore()) {
         setFromStart();
     } else {
@@ -157,7 +163,7 @@ window.addEventListener('onEventReceived', function (obj) {
     const listener = d.listener || '';
     const ev = d.event || {};
 
-if (ev.listener === 'widget-button') {
+    if (ev.listener === 'widget-button') {
         if (ev.field === 'resetBtn') {
             resetSabTimer();
             return;
@@ -165,13 +171,6 @@ if (ev.listener === 'widget-button') {
     }
 
     if (!listener.includes('subscriber')) return;
-
-    // ev.tier: '1000' | '2000' | '3000'
-    // ev.gifted: boolean
-    // ev.amount: number (for bulk gift count)
-    // ev.isCommunityGift?: boolean (sometimes present)
-    // ev.sender?: user gifting
-    // ev.name: subscriber name
 
     let secondsToAdd = 0;
 
@@ -193,3 +192,25 @@ window.resetSabTimer = function () {
     setFromStart();
     render();
 };
+
+function buildHints() {
+    return [
+        `Tier 1 sub = +${cfg.t1Seconds / 60} min`,
+        `Tier 2 sub = +${cfg.t2Seconds / 60} min`,
+        `Tier 3 sub = +${cfg.t3Seconds / 60} min`,
+        `Gifted sub = +${cfg.giftSeconds / 60} min`
+    ];
+}
+
+let hintIndex = 0;
+const hintEl = document.getElementById('hint');
+
+function showNextHint() {
+    hints = buildHints();
+    hintEl.classList.remove('show');
+    setTimeout(() => {
+        hintEl.textContent = hints[hintIndex];
+        hintEl.classList.add('show');
+        hintIndex = (hintIndex + 1) % hints.length;
+    }, 1000);
+}
