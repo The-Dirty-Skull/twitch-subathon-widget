@@ -38,6 +38,16 @@
         "min": 50,
         "max": 1000
     },
+    "leftText": {
+        "type": "text",
+        "name": "leftText",
+        "label": "Left Side Text",
+        "value": "Special Event"
+    },
+    "rightImage":{
+        "type": "image-input",
+        "label": "Right Side Image"
+    },
     "sep1": {
         "type": "hidden",
         "name": "sep1",

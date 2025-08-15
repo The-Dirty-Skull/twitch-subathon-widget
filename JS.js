@@ -113,6 +113,7 @@ function tryRestore() {
     return false;
 }
 
+let specialCounter = 0;
 let hints = buildHints();
 
 window.addEventListener('onWidgetLoad', function (obj) {
@@ -142,6 +143,10 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
     elTimer = document.getElementById('timer');
 
+    document.getElementById('leftText').textContent = f.leftText;
+    document.getElementById('dynamicImage').src = f.rightImage;
+    updateImageCounter();
+
     hints = buildHints();
     showNextHint();
     setInterval(showNextHint, 5000);
@@ -155,6 +160,10 @@ window.addEventListener('onWidgetLoad', function (obj) {
     render();
     startTick();
 });
+
+function updateImageCounter() {
+    document.getElementById('imageCounter').textContent = specialCounter.toString();
+}
 
 window.addEventListener('onEventReceived', function (obj) {
     const d = obj.detail;
@@ -177,6 +186,10 @@ window.addEventListener('onEventReceived', function (obj) {
     if (ev.gifted) {
         const count = Math.max(1, Number(ev.amount || 1));
         secondsToAdd += count * cfg.giftSeconds;
+        if (count >= 50) {
+            specialCounter++;
+            updateImageCounter();
+        }
     } else {
         const tier = String(ev.tier || '1000');
         if (tier === '1000') secondsToAdd += cfg.t1Seconds;
