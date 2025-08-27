@@ -1,0 +1,10 @@
+{
+    "giftedSubVideo": {
+        "type": "video-input",
+        "label": "Gifted Subs Video"
+    },
+    "sixMonthSubVideo": {
+        "type": "video-input",
+        "label": "Six Month Sub Video"
+    }
+}

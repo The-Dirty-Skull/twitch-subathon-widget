@@ -1,24 +1,25 @@
 {
     "sep0": {
         "type": "hidden",
-        "name": "sep0",
         "label": "General:"
     },
     "startTime": {
         "type": "text",
-        "name": "startTime",
         "label": "Starting Time (HH:MM:SS)",
         "value": "01:00:00"
     },
     "resetBtn": {
         "type": "button",
-        "name": "resetBtn",
         "label": "Reset Countdown Timer",
         "value": "Reset Now"
     },
+    "pauseBtn": {
+        "type": "button",
+        "label": "Pause Timer",
+        "value": "Pause"
+    },
     "capHours": {
         "type": "number",
-        "name": "capHours",
         "label": "Cap (hours, 0 = no cap)",
         "value": 0,
         "min": 0,
@@ -26,79 +27,75 @@
     },
     "persist": {
         "type": "checkbox",
-        "name": "persist",
         "label": "Persist across reloads",
         "value": true
     },
     "tickMs": {
         "type": "number",
-        "name": "tickMs",
         "label": "Tick refresh (ms)",
         "value": 250,
         "min": 50,
         "max": 1000
     },
-    "leftText": {
+    "pirateLord": {
         "type": "text",
-        "name": "leftText",
-        "label": "Left Side Text",
-        "value": "Special Event"
+        "label": "Current Pirate Lord",
+        "value": "BurkeBlack"
     },
-    "rightImage":{
+    "rightImage": {
         "type": "image-input",
         "label": "Right Side Image"
     },
     "sep1": {
         "type": "hidden",
-        "name": "sep1",
         "label": "Time Added:"
     },
     "t1Seconds": {
         "type": "number",
-        "name": "t1Seconds",
         "label": "Seconds per T1 Sub",
-        "value": 60,
-        "min": 0,
-        "max": 86400
+        "value": 300
     },
     "t2Seconds": {
         "type": "number",
-        "name": "t2Seconds",
         "label": "Seconds per T2 Sub",
-        "value": 120,
-        "min": 0,
-        "max": 86400
+        "value": 360
     },
     "t3Seconds": {
         "type": "number",
-        "name": "t3Seconds",
         "label": "Seconds per T3 Sub",
-        "value": 180,
-        "min": 0,
-        "max": 86400
+        "value": 420
     },
     "giftSeconds": {
         "type": "number",
-        "name": "giftSeconds",
         "label": "Seconds per Gift (each)",
-        "value": 60,
-        "min": 0,
-        "max": 86400
+        "value": 60
+    },
+    "bitsSeconds": {
+        "type": "number",
+        "label": "Seconds per 500 bits",
+        "value": 300
+    },
+    "donationSeconds": {
+        "type": "number",
+        "label": "Seconds per $5 donation",
+        "value": 300
+    },
+    "sixMonthSubSeconds": {
+        "type": "number",
+        "label": "Seconds per 6 month sub",
+        "value": 2100
     },
     "sep2": {
         "type": "hidden",
-        "name": "sep2",
         "label": "Style:"
     },
     "fontFamily": {
         "type": "text",
-        "name": "fontFamily",
         "label": "Font Family",
         "value": "'Pirata One', 'Trebuchet MS', sans-serif"
     },
     "fontSize": {
         "type": "number",
-        "name": "fontSize",
         "label": "Font Size (px)",
         "value": 96,
         "min": 16,
@@ -106,13 +103,11 @@
     },
     "textColor": {
         "type": "colorpicker",
-        "name": "textColor",
         "label": "Text Color",
         "value": "#FFD85E"
     },
     "shadowColor": {
         "type": "colorpicker",
-        "name": "shadowColor",
         "label": "Shadow Color",
         "value": "#000000"
     }
