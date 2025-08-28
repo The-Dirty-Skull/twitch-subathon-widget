@@ -110,5 +110,10 @@
         "type": "colorpicker",
         "label": "Shadow Color",
         "value": "#000000"
+    },
+    "shadowBlurRadius": {
+        "type": "number",
+        "label": "Shadow Blur Radius (px)",
+        "value": 16
     }
 }
