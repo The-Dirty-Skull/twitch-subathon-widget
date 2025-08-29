@@ -44,7 +44,11 @@
     },
     "rightImage": {
         "type": "image-input",
-        "label": "Right Side Image"
+        "label": "Liar's Dice Image"
+    },
+    "backgroundImage": {
+        "type": "image-input",
+        "label": "Background Image"
     },
     "sep1": {
         "type": "hidden",

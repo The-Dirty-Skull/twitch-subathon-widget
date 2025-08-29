@@ -5,6 +5,7 @@
     --font-family: {{fontFamily}};
     --shadow-blue-radius: {{shadowBlurRadius}}px;
     --shadow-blur-radius-half: calc({{shadowBlurRadius}}px / 2);
+    --background-image: url('{{backgroundImage}}');
 }
 
 #subathon {
@@ -14,7 +15,14 @@
     display: grid;
     place-items: center;
     align-content: center;
-    gap: 8px;
+    gap: 4px;
+    background-image: var(--background-image);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding-top: 60px;
+    padding-bottom: 10px;
 }
 
 #timer {
@@ -31,7 +39,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 75%;
 }
 
 #pirateLord {
@@ -39,7 +47,7 @@
     text-shadow:
         0px 1px 1px rgba(0, 0, 0, 0.6),
         0 0 var(--shadow-blur-radius-half) var(--shadow-color);
-    font-size: calc(var(--font-size) * 0.2);
+    font-size: calc(var(--font-size) * 0.3);
     text-align: right;
     padding-left: 15px;
 }
@@ -49,7 +57,7 @@
     text-shadow:
         0px 1px 1px rgba(0, 0, 0, 0.6),
         0 0 var(--shadow-blur-radius-half) var(--shadow-color);
-    font-size: calc(var(--font-size) * 0.2);
+    font-size: calc(var(--font-size) * 0.3);
     text-align: left;
     padding-right: 15px;
 }
@@ -62,12 +70,11 @@
 }
 
 #leftText {
-    margin-right: 35px;
     color: var(--color);
     text-shadow:
         0px 1px 1px rgba(0, 0, 0, 0.4),
         0 0 var(--shadow-blur-radius-half) var(--shadow-color);
-    font-size: calc(var(--font-size) * 0.25);
+    font-size: calc(var(--font-size) * 0.35);
     user-select: none;
     flex: 1;
 }
