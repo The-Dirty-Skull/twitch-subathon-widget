@@ -8,8 +8,12 @@ let cfg = {
 
 window.addEventListener('onWidgetLoad', function (obj) {
     let fieldData = obj["detail"]["fieldData"];
-    cfg.giftedSubVideo = fieldData.giftedSubVideo || "";
-    cfg.sixMonthSubVideo = fieldData.sixMonthSubVideo || "";
+    console.log("Field Data:", fieldData);
+    cfg.upTo10GiftedVideos = fieldData.upTo10GiftedVideos || [];
+    cfg.upTo25GiftedVideos = fieldData.upTo25GiftedVideos || [];
+    cfg.upTo50GiftedVideos = fieldData.upTo50GiftedVideos || [];
+    cfg.hundredGiftedVideos = fieldData.hundredGiftedVideos || [];
+    cfg.sixMonthSubVideos = fieldData.sixMonthSubVideos || [];
 });
 
 window.addEventListener('onEventReceived', function (obj) {
@@ -22,13 +26,13 @@ window.addEventListener('onEventReceived', function (obj) {
             playVideo(cfg.hundredGiftedVideos);
         }
         else if (event.amount >= 50) {
-            playVideo(cfg.upTo50GiftedVideo);
+            playVideo(cfg.upTo50GiftedVideos);
         }
         else if (event.amount >= 25) {
-            playVideo(cfg.upTo25GiftedVideo);
+            playVideo(cfg.upTo25GiftedVideos);
         }
         else if (event.amount >= 10) {
-            playVideo(cfg.upTo10GiftedVideo);
+            playVideo(cfg.upTo10GiftedVideos);
         }
     }
     else if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
@@ -39,6 +43,8 @@ window.addEventListener('onEventReceived', function (obj) {
 });
 
 function playVideo(videoUrls) {
+    console.log("Playing video from list:", videoUrls);
+    if (!videoUrls || videoUrls.length === 0) return;
     let videoEl = document.getElementById("videoElement");
     if (!videoEl) return;
 
