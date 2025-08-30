@@ -1,10 +1,27 @@
 {
-    "giftedSubVideo": {
+    "upTo10GiftedVideos": {
         "type": "video-input",
-        "label": "Gifted Subs Video"
+        "multiple": true,
+        "label": "Up To 10 Gifted Videos"
     },
-    "sixMonthSubVideo": {
+    "upTo25GiftedVideos": {
         "type": "video-input",
-        "label": "Six Month Sub Video"
+        "multiple": true,
+        "label": "Up To 25 Gifted Videos"
+    },
+    "upTo50GiftedVideos": {
+        "type": "video-input",
+        "multiple": true,
+        "label": "Up To 50 Gifted Videos"
+    },
+    "hundredGiftedVideos": {
+        "type": "video-input",
+        "multiple": true,
+        "label": "100 Gifted Videos"
+    },
+    "sixMonthSubVideos": {
+        "type": "video-input",
+        "multiple": true,
+        "label": "6 Month Sub Videos"
     }
 }

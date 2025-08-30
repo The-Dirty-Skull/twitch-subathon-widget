@@ -1,6 +1,9 @@
 let cfg = {
-    giftedSubVideo: "",
-    sixMonthSubVideo: ""
+    upTo10GiftedVideos: [],
+    upTo25GiftedVideos: [],
+    upTo50GiftedVideos: [],
+    hundredGiftedVideos: [],
+    sixMonthSubVideos: []
 };
 
 window.addEventListener('onWidgetLoad', function (obj) {
@@ -13,24 +16,34 @@ window.addEventListener('onEventReceived', function (obj) {
     if (!obj.detail || !obj.detail.event) return;
     let event = obj.detail.event;
     let listener = obj.detail.listener;
-    let testP = document.getElementById("testP");
 
-    if (listener.includes("subscriber") && event.bulkGifted && event.amount >= 15) {
-        testP.textContent = `onEventReceived - +15 gifted listener: ${listener}, amount: ${event.amount}, gifted: ${event.gifted}, bulk gifted: ${event.bulkGifted}, tier: ${event.tier}`;
-        playVideo(cfg.giftedSubVideo);
+    if (listener.includes("subscriber") && event.bulkGifted) {
+        if (event.amount >= 100) {
+            playVideo(cfg.hundredGiftedVideos);
+        }
+        else if (event.amount >= 50) {
+            playVideo(cfg.upTo50GiftedVideo);
+        }
+        else if (event.amount >= 25) {
+            playVideo(cfg.upTo25GiftedVideo);
+        }
+        else if (event.amount >= 10) {
+            playVideo(cfg.upTo10GiftedVideo);
+        }
+    }
+    else if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
+        playVideo(cfg.sixMonthSubVideos);
     }
 
-    if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
-        testP.textContent = `onEventReceived - sub 6 month listener: ${listener}, amount: ${event.amount}, gifted: ${event.gifted}, bulk gifted: ${event.bulkGifted}, tier: ${event.tier}`;
-        playVideo(cfg.sixMonthSubVideo);
-    }
 
-    
 });
 
-function playVideo(videoUrl) {
+function playVideo(videoUrls) {
     let videoEl = document.getElementById("videoElement");
     if (!videoEl) return;
+
+    let videoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
+    if (!videoUrl) return;
 
     videoEl.src = videoUrl;
     videoEl.currentTime = 0;
