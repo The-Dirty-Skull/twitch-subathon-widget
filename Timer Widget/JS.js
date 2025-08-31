@@ -206,6 +206,12 @@ window.addEventListener('onEventReceived', function (obj) {
             }
             return;
         }
+        else if(ev.field === 'resetSpecialCounter') {
+            specialCounter = 0;
+            SE_API.store.set('special_counter', { specialCounter: specialCounter });
+            updateSpecialCounter();
+            return;
+        }
     }
 
     let secondsToAdd = 0;

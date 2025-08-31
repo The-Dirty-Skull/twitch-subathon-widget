@@ -10,13 +10,15 @@
     },
     "resetBtn": {
         "type": "button",
-        "label": "Reset Countdown Timer",
-        "value": "Reset Now"
+        "label": "Reset Countdown Timer"
     },
     "pauseBtn": {
         "type": "button",
-        "label": "Pause Timer",
-        "value": "Pause"
+        "label": "Pause Timer"
+    },
+    "resetSpecialCounter": {
+        "type": "button",
+        "label": "Reset Liar's Dice Counter"
     },
     "capHours": {
         "type": "number",
