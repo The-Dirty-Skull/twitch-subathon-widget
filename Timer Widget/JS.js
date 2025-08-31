@@ -209,21 +209,26 @@ window.addEventListener('onEventReceived', function (obj) {
     }
 
     let secondsToAdd = 0;
+
+    console.log('Event received:', d.listener);
     if (d.listener.includes('subscriber') && ev.bulkGifted) {
-        const count = Math.max(1, Number(ev.amount || 1));
-        secondsToAdd += count * cfg.giftSeconds;
-        if (count >= 50) {
-            specialCounter++;
+        secondsToAdd += ev.amount * cfg.giftSeconds;
+        if (ev.amount >= 50) {
+            let multiplier = Math.floor(ev.amount / 50)
+            specialCounter += multiplier;
             console.log('Incrementing special counter to', specialCounter);
             SE_API.store.set('special_counter', { specialCounter: specialCounter });
             updateSpecialCounter();
         }
     }
     else if (d.listener.includes('cheer') && ev.amount >= 500) {
-        secondsToAdd += cfg.bitsSeconds;
+        let multiplier = Math.floor(ev.amount / 500);
+        secondsToAdd += (cfg.bitsSeconds * multiplier);
     }
     else if (d.listener.includes('tip') && ev.amount >= 5) {
-        secondsToAdd += cfg.donationSeconds;
+        let multiplier = Math.floor(ev.amount / 5);
+        console.log('Adding donation time, multiplier:', multiplier);
+        secondsToAdd += (cfg.donationSeconds * multiplier);
     }
     else if (d.listener.includes('subscriber') && !ev.bulkGifted && !ev.gifted) {
         if (ev.amount == 6) {
