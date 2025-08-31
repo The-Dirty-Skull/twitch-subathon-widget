@@ -1,23 +1,23 @@
 {
-    "upTo10GiftedVideos": {
+    "firstRangeGiftedVideos": {
         "type": "video-input",
         "multiple": true,
-        "label": "Up To 10 Gifted Videos"
+        "label": "5-49 Gifted Videos"
     },
-    "upTo25GiftedVideos": {
+    "secondRangeGiftedVideos": {
         "type": "video-input",
         "multiple": true,
-        "label": "Up To 25 Gifted Videos"
+        "label": "50-99 Gifted Videos"
     },
-    "upTo50GiftedVideos": {
+    "thirdRangeGiftedVideos": {
         "type": "video-input",
         "multiple": true,
-        "label": "Up To 50 Gifted Videos"
+        "label": "100-199 Gifted Videos"
     },
-    "hundredGiftedVideos": {
+    "fourthRangeGiftedVideos": {
         "type": "video-input",
         "multiple": true,
-        "label": "100 Gifted Videos"
+        "label": "200+ Gifted Videos"
     },
     "sixMonthSubVideos": {
         "type": "video-input",
