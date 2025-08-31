@@ -1,4 +1,5 @@
 let cfg = {
+    playbackDelay: 0,
     firstRangeGiftedVideos: [],
     secondRangeGiftedVideos: [],
     thirdRangeGiftedVideos: [],
@@ -9,6 +10,7 @@ let cfg = {
 window.addEventListener('onWidgetLoad', function (obj) {
     let fieldData = obj["detail"]["fieldData"];
     console.log("Field Data:", fieldData);
+    cfg.playbackDelay = parseInt(fieldData.playbackDelay) || 0;
     cfg.firstRangeGiftedVideos = fieldData.firstRangeGiftedVideos || [];
     cfg.secondRangeGiftedVideos = fieldData.secondRangeGiftedVideos || [];
     cfg.thirdRangeGiftedVideos = fieldData.thirdRangeGiftedVideos || [];
@@ -41,7 +43,7 @@ window.addEventListener('onEventReceived', function (obj) {
 });
 
 function playVideo(videoUrls) {
-console.log("Playing video from list:", videoUrls);
+    console.log("Playing video from list:", videoUrls);
     if (!videoUrls || videoUrls.length === 0) return;
     let videoEl = document.getElementById("videoElement");
     if (!videoEl) return;
@@ -49,13 +51,20 @@ console.log("Playing video from list:", videoUrls);
     let videoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
     if (!videoUrl) return;
 
+    let playbackDelay = (cfg.playbackDelay || 0) * 1000;
+    setTimeout(() => {
+        startVideoPlayback(videoEl, videoUrl);
+    }, playbackDelay);
+}
+
+function startVideoPlayback(videoEl, videoUrl) {
     videoEl.classList.add('show');
     videoEl.src = videoUrl;
     videoEl.currentTime = 0;
     videoEl.play().catch(err => console.error("Autoplay issue:", err));
 
     videoEl.onended = null;
-    videoEl.onended = function() {
+    videoEl.onended = function () {
         videoEl.classList.remove('show');
     };
 }

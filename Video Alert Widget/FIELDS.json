@@ -1,4 +1,9 @@
 {
+    "playbackDelay": {
+        "type": "number",
+        "label": "Playback Delay (seconds)",
+        "value": 5
+    },
     "firstRangeGiftedVideos": {
         "type": "video-input",
         "multiple": true,
