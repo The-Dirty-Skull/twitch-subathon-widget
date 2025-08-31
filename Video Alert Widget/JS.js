@@ -38,12 +38,10 @@ window.addEventListener('onEventReceived', function (obj) {
     else if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
         playVideo(cfg.sixMonthSubVideos);
     }
-
-
 });
 
 function playVideo(videoUrls) {
-    console.log("Playing video from list:", videoUrls);
+console.log("Playing video from list:", videoUrls);
     if (!videoUrls || videoUrls.length === 0) return;
     let videoEl = document.getElementById("videoElement");
     if (!videoEl) return;
@@ -51,7 +49,13 @@ function playVideo(videoUrls) {
     let videoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
     if (!videoUrl) return;
 
+    videoEl.classList.add('show');
     videoEl.src = videoUrl;
     videoEl.currentTime = 0;
     videoEl.play().catch(err => console.error("Autoplay issue:", err));
+
+    videoEl.onended = null;
+    videoEl.onended = function() {
+        videoEl.classList.remove('show');
+    };
 }
