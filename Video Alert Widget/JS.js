@@ -1,18 +1,18 @@
 let cfg = {
-    upTo10GiftedVideos: [],
-    upTo25GiftedVideos: [],
-    upTo50GiftedVideos: [],
-    hundredGiftedVideos: [],
+    firstRangeGiftedVideos: [],
+    secondRangeGiftedVideos: [],
+    thirdRangeGiftedVideos: [],
+    fourthRangeGiftedVideos: [],
     sixMonthSubVideos: []
 };
 
 window.addEventListener('onWidgetLoad', function (obj) {
     let fieldData = obj["detail"]["fieldData"];
     console.log("Field Data:", fieldData);
-    cfg.upTo10GiftedVideos = fieldData.upTo10GiftedVideos || [];
-    cfg.upTo25GiftedVideos = fieldData.upTo25GiftedVideos || [];
-    cfg.upTo50GiftedVideos = fieldData.upTo50GiftedVideos || [];
-    cfg.hundredGiftedVideos = fieldData.hundredGiftedVideos || [];
+    cfg.firstRangeGiftedVideos = fieldData.firstRangeGiftedVideos || [];
+    cfg.secondRangeGiftedVideos = fieldData.secondRangeGiftedVideos || [];
+    cfg.thirdRangeGiftedVideos = fieldData.thirdRangeGiftedVideos || [];
+    cfg.fourthRangeGiftedVideos = fieldData.fourthRangeGiftedVideos || [];
     cfg.sixMonthSubVideos = fieldData.sixMonthSubVideos || [];
 });
 
@@ -22,17 +22,17 @@ window.addEventListener('onEventReceived', function (obj) {
     let listener = obj.detail.listener;
 
     if (listener.includes("subscriber") && event.bulkGifted) {
-        if (event.amount >= 100) {
-            playVideo(cfg.hundredGiftedVideos);
+        if (event.amount >= 200) {
+            playVideo(cfg.fourthRangeGiftedVideos);
+        }
+        else if (event.amount >= 100) {
+            playVideo(cfg.thirdRangeGiftedVideos);
         }
         else if (event.amount >= 50) {
-            playVideo(cfg.upTo50GiftedVideos);
+            playVideo(cfg.secondRangeGiftedVideos);
         }
-        else if (event.amount >= 25) {
-            playVideo(cfg.upTo25GiftedVideos);
-        }
-        else if (event.amount >= 10) {
-            playVideo(cfg.upTo10GiftedVideos);
+        else if (event.amount >= 5) {
+            playVideo(cfg.firstRangeGiftedVideos);
         }
     }
     else if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
