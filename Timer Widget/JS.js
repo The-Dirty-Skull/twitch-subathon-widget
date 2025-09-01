@@ -31,7 +31,7 @@ let cfg = {
     capMs: 0,
     tickMs: 250,
     persist: true,
-    pirateLord: "BurkeBlack",
+    pirateLord: "",
     t1Seconds: 60,
     t2Seconds: 120,
     t3Seconds: 180,
@@ -157,7 +157,17 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
     elTimer = document.getElementById('timer');
 
-    document.getElementById('pirateLord').textContent = `Pirate Lord: ${f.pirateLord}`;
+    cfg.pirateLord = String(f.pirateLord || cfg.pirateLord);
+    if (!cfg.pirateLord || cfg.pirateLord.trim() === "") {
+        const pirateLordEl = document.getElementById('pirateLord');
+        pirateLordEl.style.display = 'none';
+        const subCountEl = document.getElementById('subCount');
+        subCountEl.style.textAlign = 'center';
+        subCountEl.style.flex = '1';
+    }
+    else {
+        document.getElementById('pirateLord').textContent = `Pirate Lord: ${cfg.pirateLord}`;
+    }
     document.getElementById('dynamicImage').src = f.rightImage;
     SE_API.store.get('special_counter').then(data => {
         console.log('Restored special counter from storage:', data);
@@ -206,7 +216,7 @@ window.addEventListener('onEventReceived', function (obj) {
             }
             return;
         }
-        else if(ev.field === 'resetSpecialCounter') {
+        else if (ev.field === 'resetSpecialCounter') {
             specialCounter = 0;
             SE_API.store.set('special_counter', { specialCounter: specialCounter });
             updateSpecialCounter();

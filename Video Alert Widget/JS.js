@@ -51,6 +51,13 @@ function playVideo(videoUrls) {
     let videoUrl = videoUrls[Math.floor(Math.random() * videoUrls.length)];
     if (!videoUrl) return;
 
+    if (videoEl.classList.contains('show')) {
+        if (!videoEl.queue) videoEl.queue = [];
+        videoEl.queue.push(videoUrl);
+        console.log("Video added to queue:", videoUrl);
+        return;
+    }
+
     let playbackDelay = (cfg.playbackDelay || 0) * 1000;
     setTimeout(() => {
         startVideoPlayback(videoEl, videoUrl);
@@ -66,5 +73,10 @@ function startVideoPlayback(videoEl, videoUrl) {
     videoEl.onended = null;
     videoEl.onended = function () {
         videoEl.classList.remove('show');
+        if (videoEl.queue && videoEl.queue.length > 0) {
+            let nextVideoUrl = videoEl.queue.shift();
+            console.log("Playing next video from queue:", nextVideoUrl);
+            startVideoPlayback(videoEl, nextVideoUrl);
+        }
     };
 }
