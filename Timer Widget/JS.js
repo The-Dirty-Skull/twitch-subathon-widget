@@ -290,10 +290,11 @@ window.resetSubTimer = function () {
 
 function buildMessages() {
     return [
+        `Gifted Subs = +${cfg.giftSeconds / 60} min each`,
         `Sub = +${cfg.t1Seconds / 60} min`,
         `500 Bits = +${cfg.bitsSeconds / 60} min`,
         `$5 = +${cfg.donationSeconds / 60} min`,
-        `6 Month Sub = +${(cfg.sixMonthSubSeconds - 300) / 60} min + bonus 5 min`,
+        `50 gifted subs = Round of Liar's Dice`
     ];
 }
 
