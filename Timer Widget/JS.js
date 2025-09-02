@@ -313,5 +313,5 @@ function showNextMessage() {
 
 function updateSubCount(data) {
     const subCountEl = document.getElementById('subCount');
-    subCountEl.textContent = `Subs: ${data["subscriber-total"]["count"]}`;
+    subCountEl.textContent = `Subs: ${data["subscriber-points"]["count"]}`;
 }
