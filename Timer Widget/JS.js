@@ -256,8 +256,8 @@ window.addEventListener('onEventReceived', function (obj) {
         console.log('Adding donation time, multiplier:', multiplier);
         secondsToAdd += (cfg.donationSeconds * multiplier);
     }
-    else if (d.listener.includes('subscriber') && !ev.bulkGifted && !ev.gifted) {
-        if (ev.amount == 6) {
+    else if (d.listener.includes('subscriber-latest') && !ev.bulkGifted && !ev.gifted) {
+        if (ev.amount === 6) {
             secondsToAdd += cfg.sixMonthSubSeconds;
         }
         else {

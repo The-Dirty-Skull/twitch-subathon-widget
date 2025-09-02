@@ -23,7 +23,7 @@ window.addEventListener('onEventReceived', function (obj) {
     let event = obj.detail.event;
     let listener = obj.detail.listener;
 
-    if (listener.includes("subscriber") && event.bulkGifted) {
+    if (listener.includes('subscriber-gifted-latest') && event.bulkGifted) {
         if (event.amount >= 200) {
             playVideo(cfg.fourthRangeGiftedVideos);
         }
@@ -37,7 +37,7 @@ window.addEventListener('onEventReceived', function (obj) {
             playVideo(cfg.firstRangeGiftedVideos);
         }
     }
-    else if (listener.includes("subscriber") && !event.bulkGifted && !event.gifted && event.amount >= 6) {
+    else if (listener.includes('subscriber-latest') && !event.bulkGifted && !event.gifted && event.amount === 6) {
         playVideo(cfg.sixMonthSubVideos);
     }
 });
