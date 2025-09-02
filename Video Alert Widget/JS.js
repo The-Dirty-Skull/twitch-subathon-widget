@@ -23,7 +23,7 @@ window.addEventListener('onEventReceived', function (obj) {
     let event = obj.detail.event;
     let listener = obj.detail.listener;
 
-    if (listener.includes('subscriber-gifted-latest') && event.bulkGifted) {
+    if (listener.includes('subscriber-latest') && event.bulkGifted) {
         if (event.amount >= 200) {
             playVideo(cfg.fourthRangeGiftedVideos);
         }

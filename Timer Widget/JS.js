@@ -237,8 +237,8 @@ window.addEventListener('onEventReceived', function (obj) {
     let secondsToAdd = 0;
 
     console.log('Event received:', d.listener);
-    if (d.listener.includes('subscriber') && ev.bulkGifted) {
-        secondsToAdd += ev.amount * cfg.giftSeconds;
+    if (d.listener.includes('subscriber-latest') && ev.bulkGifted) {
+        secondsToAdd += (ev.amount * cfg.giftSeconds);
         if (ev.amount >= 50) {
             let multiplier = Math.floor(ev.amount / 50)
             specialCounter += multiplier;
@@ -247,16 +247,16 @@ window.addEventListener('onEventReceived', function (obj) {
             updateSpecialCounter();
         }
     }
-    else if (d.listener.includes('cheer') && ev.amount >= 500) {
+    else if (d.listener.includes('cheer-latest') && ev.amount >= 500) {
         let multiplier = Math.floor(ev.amount / 500);
         secondsToAdd += (cfg.bitsSeconds * multiplier);
     }
-    else if (d.listener.includes('tip') && ev.amount >= 5) {
+    else if (d.listener.includes('tip-latest') && ev.amount >= 5) {
         let multiplier = Math.floor(ev.amount / 5);
         console.log('Adding donation time, multiplier:', multiplier);
         secondsToAdd += (cfg.donationSeconds * multiplier);
     }
-    else if (d.listener.includes('subscriber-latest') && !ev.bulkGifted && !ev.gifted) {
+    else if (d.listener.includes('subscriber-latest') && !ev.gifted && !ev.bulkGifted) {
         if (ev.amount === 6) {
             secondsToAdd += cfg.sixMonthSubSeconds;
         }
