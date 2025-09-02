@@ -16,6 +16,14 @@
         "type": "button",
         "label": "Pause Timer"
     },
+    "plusOneMinute": {
+        "type": "button",
+        "label": "+1 Minute"
+    },
+    "minusOneMinute": {
+        "type": "button",
+        "label": "-1 Minute"
+    },
     "resetSpecialCounter": {
         "type": "button",
         "label": "Reset Liar's Dice Counter"

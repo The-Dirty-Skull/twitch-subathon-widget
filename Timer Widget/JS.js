@@ -66,7 +66,7 @@ function applyCap() {
 }
 
 function addSeconds(seconds) {
-    if (seconds <= 0) return;
+    if (seconds === 0) return;
     const addMs = seconds * 1000;
     endAtMs = Math.max(endAtMs, now()) + addMs;
     applyCap();
@@ -220,6 +220,16 @@ window.addEventListener('onEventReceived', function (obj) {
             specialCounter = 0;
             SE_API.store.set('special_counter', { specialCounter: specialCounter });
             updateSpecialCounter();
+            return;
+        }
+        else if (ev.field === 'plusOneMinute') {
+            addSeconds(60);
+            render();
+            return;
+        }
+        else if (ev.field === 'minusOneMinute') {
+            addSeconds(-60);
+            render();
             return;
         }
     }
