@@ -37,9 +37,9 @@ window.addEventListener('onEventReceived', function (obj) {
             playVideo(cfg.firstRangeGiftedVideos);
         }
     }
-    else if (listener.includes('subscriber-latest') && !event.bulkGifted && !event.gifted && event.amount === 6) {
-        playVideo(cfg.sixMonthSubVideos);
-    }
+    // else if (listener.includes('subscriber-latest') && !event.bulkGifted && !event.gifted && event.amount === 6) {
+    //     playVideo(cfg.sixMonthSubVideos);
+    // }
 });
 
 function playVideo(videoUrls) {

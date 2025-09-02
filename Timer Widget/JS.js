@@ -261,14 +261,12 @@ window.addEventListener('onEventReceived', function (obj) {
             secondsToAdd += cfg.sixMonthSubSeconds;
         }
         else {
+            // const months = Math.max(1, Number(ev.amount || 1));
             const tier = String(ev.tier || '1000');
             if (tier === '1000') secondsToAdd += cfg.t1Seconds;
             else if (tier === '2000') secondsToAdd += cfg.t2Seconds;
             else if (tier === '3000') secondsToAdd += cfg.t3Seconds;
             else secondsToAdd += cfg.t1Seconds;
-
-            const months = Math.max(1, Number(ev.amount || 1));
-            secondsToAdd *= months;
         }
     }
 
@@ -292,10 +290,6 @@ window.resetSubTimer = function () {
 
 function buildMessages() {
     return [
-        // `Tier 1 sub = +${cfg.t1Seconds / 60} min`,
-        // `Tier 2 sub = +${cfg.t2Seconds / 60} min`,
-        // `Tier 3 sub = +${cfg.t3Seconds / 60} min`,
-        // `Gifted sub = +${cfg.giftSeconds / 60} min`
         `Sub = +${cfg.t1Seconds / 60} min`,
         `500 Bits = +${cfg.bitsSeconds / 60} min`,
         `$5 = +${cfg.donationSeconds / 60} min`,
