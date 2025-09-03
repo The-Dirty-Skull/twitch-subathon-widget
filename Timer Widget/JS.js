@@ -157,17 +157,17 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
     elTimer = document.getElementById('timer');
 
-    cfg.pirateLord = String(f.pirateLord || cfg.pirateLord);
-    if (!cfg.pirateLord || cfg.pirateLord.trim() === "") {
-        const pirateLordEl = document.getElementById('pirateLord');
-        pirateLordEl.style.display = 'none';
-        const subCountEl = document.getElementById('subCount');
-        subCountEl.style.textAlign = 'center';
-        subCountEl.style.flex = '1';
-    }
-    else {
-        document.getElementById('pirateLord').textContent = `Pirate Lord: ${cfg.pirateLord}`;
-    }
+    // cfg.pirateLord = String(f.pirateLord || cfg.pirateLord);
+    // if (!cfg.pirateLord || cfg.pirateLord.trim() === "") {
+    //     const pirateLordEl = document.getElementById('pirateLord');
+    //     pirateLordEl.style.display = 'none';
+    //     const subCountEl = document.getElementById('subCount');
+    //     subCountEl.style.textAlign = 'center';
+    //     subCountEl.style.flex = '1';
+    // }
+    // else {
+    //     document.getElementById('pirateLord').textContent = `Pirate Lord: ${cfg.pirateLord}`;
+    // }
     document.getElementById('dynamicImage').src = f.rightImage;
     SE_API.store.get('special_counter').then(data => {
         console.log('Restored special counter from storage:', data);
@@ -177,6 +177,16 @@ window.addEventListener('onWidgetLoad', function (obj) {
             updateSpecialCounter();
         }
     });
+
+    const pirateLordEl = document.getElementById('pirateLord');
+    pirateLordEl.textContent = `Liar's Dice Progress: 0/50`;
+    SE_API.store.get('gifted_sub_counter').then(data => {
+        if (data && data.giftedSubCounter) {
+            window.giftedSubCounter = data.giftedSubCounter;
+            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+        }
+    });
+
     updateSubCount(d.session.data);
 
     messages = buildMessages();
@@ -239,13 +249,29 @@ window.addEventListener('onEventReceived', function (obj) {
     console.log('Event received:', d.listener);
     if (d.listener.includes('subscriber-latest') && ev.bulkGifted) {
         secondsToAdd += (ev.amount * cfg.giftSeconds);
-        if (ev.amount >= 50) {
-            let multiplier = Math.floor(ev.amount / 50)
+        if (!window.giftedSubCounter) {
+            window.giftedSubCounter = 0;
+        }
+
+        window.giftedSubCounter += ev.amount;
+        const pirateLordEl = document.getElementById('pirateLord');
+        pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+        if (window.giftedSubCounter >= 50) {
+            let multiplier = Math.floor(window.giftedSubCounter / 50);
             specialCounter += multiplier;
-            console.log('Incrementing special counter to', specialCounter);
+            window.giftedSubCounter %= 50;
+            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+            SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
             SE_API.store.set('special_counter', { specialCounter: specialCounter });
             updateSpecialCounter();
         }
+        // if (ev.amount >= 50) {
+        //     let multiplier = Math.floor(ev.amount / 50)
+        //     specialCounter += multiplier;
+        //     console.log('Incrementing special counter to', specialCounter);
+        //     SE_API.store.set('special_counter', { specialCounter: specialCounter });
+        //     updateSpecialCounter();
+        // }
     }
     else if (d.listener.includes('cheer-latest') && ev.amount >= 500) {
         let multiplier = Math.floor(ev.amount / 500);
