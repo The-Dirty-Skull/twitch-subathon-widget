@@ -28,6 +28,14 @@
         "type": "button",
         "label": "Reset Liar's Dice Counter"
     },
+    "plusOneLiarsDice": {
+        "type": "button",
+        "label": "+1 Liar's Dice Progress"
+    },
+    "minusOneLiarsDice": {
+        "type": "button",
+        "label": "-1 Liar's Dice Progress"
+    },
     "capHours": {
         "type": "number",
         "label": "Cap (hours, 0 = no cap)",

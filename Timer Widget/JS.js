@@ -233,6 +233,18 @@ window.addEventListener('onEventReceived', function (obj) {
             render();
             return;
         }
+        else if (ev.field === 'plusOneLiarsDice') {
+            window.giftedSubCounter += 1;
+            SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
+            const pirateLordEl = document.getElementById('pirateLord');
+            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+        }
+        else if (ev.field === 'minusOneLiarsDice') {
+            window.giftedSubCounter = Math.max(0, window.giftedSubCounter - 1);
+            SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
+            const pirateLordEl = document.getElementById('pirateLord');
+            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+        }
     }
 
     let secondsToAdd = 0;
