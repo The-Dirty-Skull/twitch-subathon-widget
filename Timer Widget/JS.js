@@ -248,6 +248,16 @@ window.addEventListener('onEventReceived', function (obj) {
             const pirateLordEl = document.getElementById('pirateLord');
             pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
         }
+        else if(ev.field === `plusOneSpecialCounter`) {
+            specialCounter += 1;
+            SE_API.store.set('special_counter', { specialCounter: specialCounter });
+            updateSpecialCounter();
+        }
+        else if(ev.field === `minusOneSpecialCounter`) {
+            specialCounter = Math.max(0, specialCounter - 1);
+            SE_API.store.set('special_counter', { specialCounter: specialCounter });
+            updateSpecialCounter();
+        }
     }
 
     let secondsToAdd = 0;

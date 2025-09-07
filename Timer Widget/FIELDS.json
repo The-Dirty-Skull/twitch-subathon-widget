@@ -24,6 +24,14 @@
         "type": "button",
         "label": "-1 Minute"
     },
+    "plusOneSpecialCounter": {
+        "type": "button",
+        "label": "+1 Liar's Dice Counter"
+    },
+    "minusOneSpecialCounter": {
+        "type": "button",
+        "label": "-1 Liar's Dice Counter"
+    },
     "resetSpecialCounter": {
         "type": "button",
         "label": "Reset Liar's Dice Counter"
