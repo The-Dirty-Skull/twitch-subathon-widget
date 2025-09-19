@@ -31,7 +31,7 @@ let cfg = {
     capMs: 0,
     tickMs: 250,
     persist: true,
-    pirateLord: "",
+    specialCounterGifts: 50,
     t1Seconds: 60,
     t2Seconds: 120,
     t3Seconds: 180,
@@ -141,6 +141,7 @@ window.addEventListener('onWidgetLoad', function (obj) {
     const d = obj.detail || {};
     const f = d.fieldData || {};
 
+    cfg.specialCounterGifts = Math.max(1, Number(f.howManyGiftedForSpecialCounter || cfg.specialCounterGifts));
     cfg.startSeconds = parseHHMMSS(f.startTime) || cfg.startSeconds;
     cfg.capMs = Math.max(0, Number(f.capHours || 0)) * 3600 * 1000;
     cfg.persist = f.persist;
@@ -173,12 +174,12 @@ window.addEventListener('onWidgetLoad', function (obj) {
     if (!window.giftedSubCounter) {
         window.giftedSubCounter = 0;
     }
-    const pirateLordEl = document.getElementById('pirateLord');
-    pirateLordEl.textContent = `Liar's Dice Progress: 0/50`;
+    const specialProgressEl = document.getElementById('specialProgress');
+    specialProgressEl.textContent = `Liar's Dice Progress: 0/${cfg.specialCounterGifts}`;
     SE_API.store.get('gifted_sub_counter').then(data => {
         if (data && data.giftedSubCounter) {
             window.giftedSubCounter = data.giftedSubCounter;
-            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+            specialProgressEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/${cfg.specialCounterGifts}`;
         }
     });
 
@@ -240,17 +241,17 @@ window.addEventListener('onEventReceived', function (obj) {
         else if (ev.field === 'plusOneLiarsDice') {
             window.giftedSubCounter += 1;
             SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
-            const pirateLordEl = document.getElementById('pirateLord');
-            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
-            if (window.giftedSubCounter >= 50) {
+            const specialProgressEl = document.getElementById('specialProgress');
+            specialProgressEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/${cfg.specialCounterGifts}`;
+            if (window.giftedSubCounter >= cfg.specialCounterGifts) {
                 incrementSpecialCounterAndUpdate();
             }
         }
         else if (ev.field === 'minusOneLiarsDice') {
             window.giftedSubCounter = Math.max(0, window.giftedSubCounter - 1);
             SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
-            const pirateLordEl = document.getElementById('pirateLord');
-            pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+            const specialProgressEl = document.getElementById('specialProgress');
+            specialProgressEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/${cfg.specialCounterGifts}`;
         }
         else if (ev.field === `plusOneSpecialCounter`) {
             specialCounter += 1;
@@ -271,9 +272,9 @@ window.addEventListener('onEventReceived', function (obj) {
         secondsToAdd += cfg.giftSeconds;
         window.giftedSubCounter += 1;
         SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
-        const pirateLordEl = document.getElementById('pirateLord');
-        pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
-        if (window.giftedSubCounter >= 50) {
+        const specialProgressEl = document.getElementById('specialProgress');
+        specialProgressEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/${cfg.specialCounterGifts}`;
+        if (window.giftedSubCounter >= cfg.specialCounterGifts) {
             incrementSpecialCounterAndUpdate();
         }
     }
@@ -323,7 +324,7 @@ function buildMessages() {
         `Sub = +${cfg.t1Seconds / 60} min`,
         `500 Bits = +${cfg.bitsSeconds / 60} min`,
         `$5 = +${cfg.donationSeconds / 60} min`,
-        `50 gifted subs = Round of Liar's Dice`
+        `${cfg.specialCounterGifts} gifted subs = Round of Liar's Dice`
     ];
 }
 
@@ -346,12 +347,13 @@ function updateSubCount(data) {
 }
 
 function incrementSpecialCounterAndUpdate() {
-    let multiplier = Math.floor(window.giftedSubCounter / 50);
+    let multiplier = Math.floor(window.giftedSubCounter / cfg.specialCounterGifts);
     specialCounter += multiplier;
     SE_API.store.set('special_counter', { specialCounter: specialCounter });
     updateSpecialCounter();
 
-    window.giftedSubCounter %= 50;
+    window.giftedSubCounter %= cfg.specialCounterGifts;
     SE_API.store.set('gifted_sub_counter', { giftedSubCounter: window.giftedSubCounter });
-    pirateLordEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/50`;
+    const specialProgressEl = document.getElementById('specialProgress');
+    specialProgressEl.textContent = `Liar's Dice Progress: ${window.giftedSubCounter}/${cfg.specialCounterGifts}`;
 }

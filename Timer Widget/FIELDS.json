@@ -44,6 +44,11 @@
         "type": "button",
         "label": "-1 Liar's Dice Progress"
     },
+    "howManyGiftedForSpecialCounter": {
+        "type": "number",
+        "label": "How many gifted subs for +1 Liar's Dice Counter",
+        "value": 50
+    },
     "capHours": {
         "type": "number",
         "label": "Cap (hours, 0 = no cap)",
@@ -62,11 +67,6 @@
         "value": 250,
         "min": 50,
         "max": 1000
-    },
-    "pirateLord": {
-        "type": "text",
-        "label": "Current Pirate Lord",
-        "value": "BurkeBlack"
     },
     "rightImage": {
         "type": "image-input",
